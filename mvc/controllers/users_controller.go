@@ -2,7 +2,8 @@ package controllers
 
 import (
 	"encoding/json"
-	"github.com/haxul/go-microservices/mvc/errors"
+	"errors"
+	"github.com/haxul/go-microservices/mvc/custumErrors"
 	"github.com/haxul/go-microservices/mvc/services"
 	"net/http"
 	"strconv"
@@ -13,13 +14,13 @@ func GetUser(responseWriter http.ResponseWriter, request *http.Request) {
 	id, containsError := strconv.ParseInt(userId, 10, 64)
 
 	if containsError != nil {
-		errors.NewError(http.StatusNotFound, containsError, &responseWriter)
+		custumErrors.NewError(http.StatusBadRequest, errors.New("must be a number"), &responseWriter)
 		return
 	}
 
 	user, err := services.GetUser(uint64(id))
 	if err != nil {
-		errors.NewError(http.StatusNotFound, err, &responseWriter)
+		custumErrors.NewError(http.StatusBadRequest, err, &responseWriter)
 		return
 	}
 
