@@ -1,11 +1,15 @@
 package app
 
-import "fmt"
+import (
+	"github.com/haxul/go-microservices/mvc/controllers"
+	"net/http"
+)
 
 func StartApp() {
-	fmt.Println("start...")
-}
+	http.HandleFunc("/users", controllers.GetUser)
 
-func StartAnotherApp()  {
-	fmt.Print("start another app..")
+	err := http.ListenAndServe(":8080", nil)
+	if err != nil {
+		panic(err)
+	}
 }
