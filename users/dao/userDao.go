@@ -2,7 +2,7 @@ package dao
 
 import (
 	"errors"
-	"github.com/haxul/go-microservices/mvc/entities"
+	"github.com/haxul/go-microservices/users/entities"
 )
 
 var users = map[uint64]*entities.User{

@@ -3,8 +3,8 @@ package controllers
 import (
 	"encoding/json"
 	"errors"
-	"github.com/haxul/go-microservices/mvc/custumErrors"
-	"github.com/haxul/go-microservices/mvc/services"
+	"github.com/haxul/go-microservices/users/custumErrors"
+	"github.com/haxul/go-microservices/users/services"
 	"net/http"
 	"strconv"
 )
@@ -25,5 +25,9 @@ func GetUser(responseWriter http.ResponseWriter, request *http.Request) {
 	}
 
 	jsonValue, _ := json.Marshal(user)
-	responseWriter.Write(jsonValue)
+	_, jsonError := responseWriter.Write(jsonValue)
+
+	if jsonError != nil {
+		custumErrors.NewError(http.StatusBadRequest, jsonError, &responseWriter)
+	}
 }

@@ -1,7 +1,7 @@
 package app
 
 import (
-	"github.com/haxul/go-microservices/mvc/controllers"
+	"github.com/haxul/go-microservices/users/controllers"
 	"net/http"
 )
 
