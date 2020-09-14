@@ -5,12 +5,12 @@ import (
 )
 
 func TestGetUserNotFound(t *testing.T) {
-	_, err := GetUser(0)
+	_, err := UserDao.GetUser(0)
 	if err == nil {
 		t.Error("user must be not found")
 	}
 
-	user, errUser := GetUser(100)
+	user, errUser := UserDao.GetUser(100)
 	if errUser != nil {
 		t.Error("user must by found")
 	}

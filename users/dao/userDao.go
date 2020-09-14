@@ -14,7 +14,11 @@ var users = map[uint64]*entities.User{
 	},
 }
 
-func GetUser(id uint64) (*entities.User, error) {
+type userDao struct{}
+
+var UserDao userDao
+
+func (u *userDao) GetUser(id uint64) (*entities.User, error) {
 	user := users[id]
 	if user == nil {
 		return &entities.User{}, errors.New("user is not found")

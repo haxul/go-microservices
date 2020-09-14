@@ -18,7 +18,7 @@ func GetUser(responseWriter http.ResponseWriter, request *http.Request) {
 		return
 	}
 
-	user, err := services.GetUser(uint64(id))
+	user, err := services.UserService.GetUser(uint64(id))
 	if err != nil {
 		custumErrors.NewError(http.StatusBadRequest, err, &responseWriter)
 		return
