@@ -9,8 +9,7 @@ import (
 	"net/http"
 )
 
-type githubService struct {
-}
+type githubService struct{}
 
 var (
 	GithubService githubService
